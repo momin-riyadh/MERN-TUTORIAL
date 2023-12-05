@@ -5,6 +5,8 @@
  * @see {@link https://expressjs.com/}
  */
 const express = require('express');
+
+const colors = require('colors');
 /**
  * A variable to load and access environment variables from a `.env` file using the `dotenv` package.
  *
@@ -18,7 +20,10 @@ const { /**
  *
  * @module errorHandler
  */
-    errorHandler} = require('./middleware/errorMiddleware');
+    errorHandler
+} = require('./middleware/errorMiddleware');
+
+const connectDB = require('./config/db')
 /**
  * The port number for the server.
  *
@@ -28,6 +33,8 @@ const { /**
  * @default 3000
  */
 const port = process.env.PORT || 3000;
+
+connectDB()
 
 
 /**
