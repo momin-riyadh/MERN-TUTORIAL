@@ -5,7 +5,7 @@
  * @param {Response} res - The response object.
  * @returns {void}
  */
-const getGoals = (req, res) => {
+const getGoals = async (req, res) => {
     res.status(200).json({message: 'Get goals'})
 }
 /**
@@ -15,7 +15,7 @@ const getGoals = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {undefined}
  */
-const setGoal = (req, res) => {
+const setGoal = async (req, res) => {
     if (!req.body.text) {
         res.status(400)
         throw new Error('Please add a text field')
@@ -31,18 +31,17 @@ const setGoal = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {undefined}
  */
-const updateGoal = (req, res) => {
+const updateGoal = async (req, res) => {
     res.status(200).json({message: `Update goals ${req.params.id}`})
 }
 
 /**
  * Deletes goals.
- *
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void}
  */
-const deleteGoal = (req, res) => {
+const deleteGoal = async (req, res) => {
     res.status(200).json({message: `Delete goals ${req.params.id}`})
 }
 
