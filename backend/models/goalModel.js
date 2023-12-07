@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const goalSchema = mongoose.Schema(
+const goalSchema = new mongoose.Schema(
     {
         text: {
             type: String,
