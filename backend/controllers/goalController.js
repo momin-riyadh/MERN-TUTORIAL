@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const Goal = require('../models/goalModel');
+const User = require('../models/userModel');
 
 /**
  * Function to handle GET request for goals.
@@ -47,6 +48,20 @@ const updateGoal = asyncHandler(async (req, res) => {
         throw new Error('Goal Not found')
     }
 
+    const user = await User.findById(req.user.id)
+
+    // Check For User
+    if (!user) {
+        res.status(401)
+        throw new Error('User Not Found')
+    }
+
+    // Make Sure the logged in User Matches the goal user
+    if (goal.user.toString() !== user.id) {
+        res.status(401)
+        throw new Error('User Not Authorized')
+    }
+
     const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
     })
@@ -62,7 +77,21 @@ const updateGoal = asyncHandler(async (req, res) => {
 const deleteGoal = asyncHandler(async (req, res, next) => {
     const goal = await Goal.findById(req.params.id);
     if (!goal) {
-        return res.status(404).json({ message: 'Goal Not Found' });
+        return res.status(404).json({message: 'Goal Not Found'});
+    }
+
+    const user = await User.findById(req.user.id)
+
+    // Check For User
+    if (!user) {
+        res.status(401)
+        throw new Error('User Not Found')
+    }
+
+    // Make Sure the logged in User Matches the goal user
+    if (goal.user.toString() !== user.id) {
+        res.status(401)
+        throw new Error('User Not Authorized')
     }
 
     await Goal.findByIdAndDelete(req.params.id);
