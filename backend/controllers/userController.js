@@ -31,16 +31,15 @@ const registerUser = asyncHandler(async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt)
 
     const user = await User.create({
-        name,
-        email,
-        password: hashedPassword
+        name, email, password: hashedPassword
     })
 
     if (user) {
         res.status(201).json({
             _id: user.id,
-            name: user.email,
-            email: user.email
+            name: user.name,
+            email: user.email,
+            token: generateToken(user._id)
         })
     } else {
         res.status(400)
@@ -60,6 +59,7 @@ const loginUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            token: generateToken(user._id)
         });
     } else {
         res.status(401);
@@ -73,6 +73,13 @@ const loginUser = asyncHandler(async (req, res) => {
 const getMe = asyncHandler((req, res) => {
     res.json({message: 'User Data Display'})
 })
+
+//Geerate a Token
+const generateToken = (id) => {
+    return jwt.sign({id}, process.env.JWT_SECRET, {
+        expiresIn: '30d',
+    })
+}
 
 
 module.exports = {registerUser, loginUser, getMe}
