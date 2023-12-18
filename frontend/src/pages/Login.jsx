@@ -45,7 +45,7 @@ function Login() {
             email,
             password,
         }
-
+        toast.success("Login Successfully")
         dispatch(login(userData))
     }
 
