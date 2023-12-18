@@ -23,7 +23,8 @@ function Login() {
         if (isError) {
             toast.error(message)
         }
-        if (isSuccess || user) {
+        if (isSuccess && user) {
+            toast.success("Login Successfully")
             navigate('/')
         }
         dispatch(reset())
@@ -43,7 +44,6 @@ function Login() {
             email,
             password,
         }
-        toast.success("Login Successfully")
         dispatch(login(userData))
     }
 
