@@ -8,10 +8,8 @@ import Spinner from '../components/Spinner'
 
 function Login() {
     const [formData, setFormData] = useState({
-
         email: '',
         password: '',
-
     })
 
     const {email, password} = formData;
