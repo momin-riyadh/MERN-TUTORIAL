@@ -1,4 +1,13 @@
 /**
+ * A variable to load and access environment variables from a `.env` file using the `dotenv` package.
+ *
+ * @see {@link https://www.npmjs.com/package/dotenv|dotenv} for more information about the `dotenv` package.
+ * @since 1.0.0
+ */
+require('dotenv').config();
+
+
+/**
  * @type {express.Application}
  * @description This variable represents an instance of the Express framework.
  *              It is used to create and configure an Express application.
@@ -7,13 +16,7 @@
 const express = require('express');
 
 const colors = require('colors');
-/**
- * A variable to load and access environment variables from a `.env` file using the `dotenv` package.
- *
- * @see {@link https://www.npmjs.com/package/dotenv|dotenv} for more information about the `dotenv` package.
- * @since 1.0.0
- */
-const dotenv = require('dotenv').config();
+
 const { /**
  * A variable representing the error handler module.
  * This module is responsible for handling application errors and logging them.
