@@ -1,36 +1,38 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const API_URL = '/api/goals/'
 
-
-//Create New Goal
+// Create new goal
 const createGoal = async (goalData, token) => {
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
-        }
+            Authorization: `Bearer ${token}`,
+        },
     }
 
-    const response = await axios.post(API_URL, goalData, config);
+    const response = await axios.post(API_URL, goalData, config)
+
     return response.data
 }
 
-
-//Get User Goals
+// Get user goals
 const getGoals = async (token) => {
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
-        }
+            Authorization: `Bearer ${token}`,
+        },
     }
 
-    const response = await axios.get(API_URL, config);
+    const response = await axios.get(API_URL, config)
+
     return response.data
 }
 
+
+
 const goalService = {
     createGoal,
-    getGoals
+    getGoals,
 }
 
 export default goalService
