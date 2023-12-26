@@ -59,12 +59,9 @@ export const goalSlice = createSlice({
                 state.isLoading = true
             })
             .addCase(createGoal.fulfilled, (state, action) => {
-                console.log("Current state:", state);
-                console.log("Received payload:", action.payload);
                 state.isLoading = false
                 state.isSuccess = true
                 state.goals.push(action.payload)
-                console.log("Updated state:", state);
             })
             .addCase(createGoal.rejected, (state, action) => {
                 state.isLoading = false
@@ -87,6 +84,5 @@ export const goalSlice = createSlice({
     },
 })
 
-
-export const {reset} = goalSlice.actions;
+export const { reset } = goalSlice.actions;
 export default goalSlice.reducer
