@@ -42,8 +42,7 @@ function GoalItem({goal}) {
 
             {isUpdateMode && (
                 <div>
-                    <input
-                        type="text"
+                    <textarea
                         value={updatedText}
                         onChange={(e) => setUpdatedText(e.target.value)}
                         placeholder="Enter updated goal text"
