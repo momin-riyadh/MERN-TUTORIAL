@@ -141,8 +141,10 @@ export const goalSlice = createSlice({
             .addCase(updateGoal.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.goals = state.goals.filter(
-                    (goal) => goal._id !== action.payload.id)
+                // Update the existing goal with the new data
+                state.goals = state.goals.map((goal) =>
+                    goal._id === action.payload.id ? { ...goal, text: action.payload.text } : goal
+                );
             })
             .addCase(updateGoal.rejected, (state, action) => {
                 state.isLoading = false
