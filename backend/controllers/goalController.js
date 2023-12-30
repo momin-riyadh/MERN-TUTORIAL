@@ -2,6 +2,10 @@ const asyncHandler = require('express-async-handler');
 const Goal = require('../models/goalModel');
 const User = require('../models/userModel');
 
+
+
+
+
 /**
  * Function to handle GET request for goals.
  *
@@ -13,6 +17,9 @@ const getGoals = asyncHandler(async (req, res) => {
     const goals = await Goal.find({user: req.user.id})
     res.status(200).json(goals)
 });
+
+
+
 /**
  * Sets goals for the given request and response objects.
  *
@@ -32,6 +39,8 @@ const setGoal = asyncHandler(async (req, res) => {
     })
     res.status(200).json({goal})
 })
+
+
 
 
 /**
@@ -67,6 +76,12 @@ const updateGoal = asyncHandler(async (req, res) => {
     res.status(200).json(updatedGoal)
 })
 
+
+
+
+
+
+
 /**
  * Deletes goals.
  * @param {Object} req - The request object.
@@ -96,6 +111,10 @@ const deleteGoal = asyncHandler(async (req, res, next) => {
     await Goal.findByIdAndDelete(req.params.id);
     res.status(200).json({id: req.params.id});
 });
+
+
+
+
 
 module.exports = {
     getGoals, setGoal, updateGoal, deleteGoal
